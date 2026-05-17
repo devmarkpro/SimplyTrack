@@ -43,6 +43,7 @@ class PermissionManager: ObservableObject {
         "company.thebrowser.Browser",
         "com.brave.Browser",
         "com.vivaldi.Vivaldi",
+        "company.thebrowser.dia",
         "org.mozilla.firefox",
     ]
 

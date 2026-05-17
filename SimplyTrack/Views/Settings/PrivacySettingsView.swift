@@ -104,6 +104,16 @@ struct PrivacySettingsView: View {
                     HStack {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundColor(.green)
+                        Text("Dia Incognito")
+                        Spacer()
+                        Text("Supported")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.green)
                         Text("Brave Private")
                         Spacer()
                         Text("Supported")
