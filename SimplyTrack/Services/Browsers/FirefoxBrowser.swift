@@ -93,6 +93,8 @@ class FirefoxBrowser: BaseBrowser {
                 )
             } else if scriptResult.errorCode == -1743 || scriptResult.errorCode == -1744 {
                 PermissionManager.shared.handleSystemEventsPermissionResult(success: false)
+            } else if scriptResult.errorCode == -25211 {
+                PermissionManager.shared.handleAccessibilityPermissionResult(success: false)
             } else if scriptResult.errorCode == -1719 || scriptResult.errorCode == -1728 {
                 // Firefox's accessibility hierarchy can shift during navigation or between versions.
                 logger.debug("Firefox address bar unavailable in current accessibility tree: \(error.description)")

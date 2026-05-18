@@ -57,6 +57,8 @@ class SafariBrowser: BaseBrowser {
             } else if scriptResult.errorCode == -1743 || scriptResult.errorCode == -1744 {
                 // System Events permission errors
                 PermissionManager.shared.handleSystemEventsPermissionResult(success: false)
+            } else if scriptResult.errorCode == -25211 {
+                PermissionManager.shared.handleAccessibilityPermissionResult(success: false)
             } else {
                 // Log non-permission System Events errors
                 logger.error("Safari System Events AppleScript error: \(error.description)")
