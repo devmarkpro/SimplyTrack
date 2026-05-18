@@ -122,7 +122,7 @@ struct ContentView: View {
                     if permissionManager.systemEventsPermissionStatus == .denied {
                         PermissionBannerView(
                             title: "System Events Permission Required",
-                            message: "SimplyTrack needs System Events access to detect Safari private browsing. Enable it in System Preferences.",
+                            message: "SimplyTrack needs System Events access to detect Safari and Dia private browsing. Enable it in System Preferences.",
                             primaryButtonTitle: "Open System Preferences",
                             primaryAction: { permissionManager.openSystemPreferences() },
                             color: .orange
@@ -133,7 +133,7 @@ struct ContentView: View {
                     if permissionManager.accessibilityPermissionStatus == .denied {
                         PermissionBannerView(
                             title: "Accessibility Permission Required",
-                            message: "SimplyTrack needs Accessibility access to detect Safari private browsing. Enable it in System Preferences.",
+                            message: "SimplyTrack needs Accessibility access to detect Safari and Dia private browsing. Enable it in System Preferences.",
                             primaryButtonTitle: "Open System Preferences",
                             primaryAction: { permissionManager.openAccessibilityPreferences() },
                             color: .orange
