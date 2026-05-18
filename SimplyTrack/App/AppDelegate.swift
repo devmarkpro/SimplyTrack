@@ -50,6 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         // Initialize all services with proper dependency injection
         initializeServices()
 
+        // Prompt for accessibility permission if not already granted
+        PermissionManager.shared.checkAccessibilityPermission()
+
         // Start services in correct order
         menuBarManager?.setupMenuBar()
         trackingService?.startTracking()

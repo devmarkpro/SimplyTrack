@@ -8,6 +8,7 @@
 import AppKit
 import ApplicationServices
 import Foundation
+import os.log
 
 /// Status of macOS system permissions required for app functionality.
 /// Used to track automation permissions needed for browser integration.
@@ -27,6 +28,8 @@ class PermissionManager: ObservableObject {
     /// Shared singleton instance for permission management
     static let shared = PermissionManager()
 
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "PermissionManager")
+
     /// Current status of automation permissions for browser AppleScript access
     @Published var automationPermissionStatus: PermissionStatus = .notDetermined
     /// Current status of System Events automation permissions (needed for Safari private browsing detection)
@@ -43,6 +46,7 @@ class PermissionManager: ObservableObject {
         "company.thebrowser.Browser",
         "com.brave.Browser",
         "com.vivaldi.Vivaldi",
+        "company.thebrowser.dia",
         "org.mozilla.firefox",
     ]
 
@@ -86,6 +90,24 @@ class PermissionManager: ObservableObject {
             } else {
                 self.accessibilityPermissionStatus = .denied
             }
+        }
+    }
+
+    /// Checks if accessibility permissions are granted and prompts if not.
+    /// Should be called at app startup to trigger the macOS permission dialog.
+    /// Does not set `.denied` on failure — the browser error paths handle that
+    /// once the user has had a chance to respond to the system prompt.
+    func checkAccessibilityPermission() {
+        let trusted = AXIsProcessTrustedWithOptions(
+            [kAXTrustedCheckOptionPrompt.takeUnretainedValue(): true] as CFDictionary
+        )
+        if trusted {
+            logger.info("Accessibility permission already granted")
+            Task { @MainActor in
+                self.accessibilityPermissionStatus = .granted
+            }
+        } else {
+            logger.warning("Accessibility permission not granted — user prompted")
         }
     }
 

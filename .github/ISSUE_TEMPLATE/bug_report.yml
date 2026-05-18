@@ -62,6 +62,7 @@ body:
         - Arc
         - Brave
         - Vivaldi
+        - Dia
         - Firefox (experimental)
 
     validations:

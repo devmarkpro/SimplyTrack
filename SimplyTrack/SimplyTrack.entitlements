@@ -12,6 +12,7 @@
 		<string>company.thebrowser.Browser</string>
 		<string>com.brave.Browser</string>
 		<string>com.vivaldi.Vivaldi</string>
+		<string>company.thebrowser.dia</string>
 		<string>org.mozilla.firefox</string>
 		<string>com.apple.systemevents</string>
 	</array>
